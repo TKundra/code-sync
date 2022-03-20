@@ -42,8 +42,8 @@ const Home = () => {
                 <div className='logoWrapper'>
                     <img className="homePageLogo" src="/code-sync.png" alt="code-sync-logo" />
                     <div className='horizontalLine'></div>
-                    <div style={{display: 'flex', flexDirection: 'column'}}>
-                        <span style={{fontSize: '35px'}}>Coder-Sync</span>
+                    <div style={{display: 'flex', marginTop: '5px', flexDirection: 'column'}}>
+                        <span style={{fontSize: '1.75rem'}}>Coder-Sync</span>
                         <span style={{fontWeight: 'bolder', fontSize: '12px', color: '#4aed88'}}>Realtime Collboration</span>
                     </div>
                 </div>
@@ -67,7 +67,7 @@ const Home = () => {
                         Join
                     </button>
                     <span className="createInfo">
-                        If you don't have any,             create &nbsp;
+                        If you don't have any, create &nbsp;
                         <a onClick={createNewRoom} href="" className="createNewBtn">
                             new room
                         </a>
@@ -76,8 +76,7 @@ const Home = () => {
             </div>
             <footer>
                 <h4>
-                    Built with 💛 &nbsp; by &nbsp;
-                    <a href="https://github.com/TKundra">ReactJS</a>
+                    Built with 💛
                 </h4>
             </footer>
         </div>
