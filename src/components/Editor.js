@@ -3,8 +3,11 @@ import Codemirror from 'codemirror';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/dracula.css';
 import 'codemirror/mode/javascript/javascript';
+import 'codemirror/addon/hint/show-hint';
+import 'codemirror/addon/hint/javascript-hint';
 import 'codemirror/addon/edit/closetag';
 import 'codemirror/addon/edit/closebrackets';
+import 'codemirror/addon/runmode/runmode';
 import ACTIONS from '../constants/Actions';
 
 const Editor = ({ socketRef, roomId, onCodeChange })=> {
@@ -17,6 +20,7 @@ const Editor = ({ socketRef, roomId, onCodeChange })=> {
                 {
                     mode: { name: 'javascript', json: true },
                     theme: 'dracula',
+                    showHint: true,
                     autoCloseTags: true,
                     autoCloseBrackets: true,
                     lineNumbers: true,

@@ -16,7 +16,7 @@ app.use((req, res, next) => {
 
 const userSocketMap = {}; // fo now storing in-memory, better to store in db, redis, etc
 function getAllConnectedClients(roomId) {
-    // find rooms in socket adapter
+    // get allconnected users in that room (socket adapter)
     return Array.from(io.sockets.adapter.rooms.get(roomId) || []).map((socketId) => {
         return {
             socketId,
@@ -25,20 +25,15 @@ function getAllConnectedClients(roomId) {
     });
 }
 
-/*
-    io.to - all clients including me
-    socket.in - broadcast to all
-*/
-
 io.on('connection', (socket) => {
     console.log('socket connected', socket.id); // browser socket id
 
     socket.on(ACTIONS.JOIN, ({ roomId, username }) => { // join emitted event listen here
         userSocketMap[socket.id] = username; // { 'socket_id': 'usrname' }
-        socket.join(roomId); // creating room
+        socket.join(roomId); // join room
         const clients = getAllConnectedClients(roomId); // [{ socketId: '', username: '' }, {}, {}. ...]
         clients.forEach(({ socketId }) => {
-            io.to(socketId).emit(ACTIONS.JOINED, { // io.to() - notify all clients present in room including current client
+            io.to(socketId).emit(ACTIONS.JOINED, { // to each client in array
                 clients,
                 username,
                 socketId: socket.id,
